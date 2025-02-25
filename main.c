@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define nbrRefE 101
+
 int main() {
     // on récupère l'entrée de l'utilisateur
     char stringUser[45];
@@ -13,13 +15,12 @@ int main() {
         lengthStringUser++;
     }
 
-    // on compte chaque itération pour chaque caractère
+    // on compte chaque itération pour chaque caractère  et on conserve en letterMax celle que l'on retrouve le plus
     int compteurCarac = 1;
     int indexCarac = 0;
     int iterationMax;
     char letterMax;
     int nbrCorrespondantToLettre;
-    int nbrRefE = 101;
 
     for (int indexCarac = 0; indexCarac < lengthStringUser - 1; indexCarac++) {
 
@@ -42,7 +43,7 @@ int main() {
     printf("lettre correspondante : %c\n", letterMax);
     printf("int correspondant : %d\n", nbrCorrespondantToLettre);
 
-
+    // on calcule l'intervalle du chiffrement et on l'applique à toute la string
     int intervalRef = nbrRefE - nbrCorrespondantToLettre;
 
     for (int i = 0; i < lengthStringUser; i++) {
