@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <string.h>
 
 #define nbrRefE 101
+#define nbrMinAscii 97
+#define nbrMaxAscii 122
 
 int main() {
     // on récupère l'entrée de l'utilisateur
@@ -47,8 +48,19 @@ int main() {
     int intervalRef = nbrRefE - nbrCorrespondantToLettre;
 
     for (int i = 0; i < lengthStringUser; i++) {
-        stringUser[i] = stringUser[i] + intervalRef;
-    }  
+
+        int caracToRemplace = stringUser[i] + intervalRef;
+
+        // on fixe les bornes de la table ASCII
+        if (caracToRemplace < nbrMinAscii) {
+            caracToRemplace = (nbrMaxAscii + 1) - (nbrMinAscii - caracToRemplace);
+
+        } else if (caracToRemplace > nbrMaxAscii) {
+            caracToRemplace = nbrMinAscii + (caracToRemplace - nbrMaxAscii);
+        }
+        // on remplace chaque caractere
+        stringUser[i] = caracToRemplace;
+    }
 
     printf("texte decode : %s\n", stringUser);
 
